@@ -31,6 +31,8 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate($this->cliente->rules());
+
         $cliente = $this->cliente->create([
             'nome'          => $request->nome,
             'cpf'           => $request->cpf,
@@ -43,7 +45,7 @@ class ClienteController extends Controller
             'cep'           => $request->cep,
             'dataNasc'      => $request->dataNasc,
         ]);
-
+        dd($request->all());
         return response()->json(['success' => 'Cliente criado com sucesso!'], 200);
     }
 

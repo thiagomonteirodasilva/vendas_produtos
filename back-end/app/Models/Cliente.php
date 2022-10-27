@@ -21,4 +21,18 @@ class Cliente extends Model
         'cep',
         'dataNasc'
     ];
+
+    public function rules(){
+        return [
+            'nome' => 'required',
+            'cpf' => 'required', 
+            'logradouro' => 'required', 
+            'numero' => 'required', 
+            'bairro' => 'required', 
+            'cidade' => 'required',
+            'email' => 'required',
+            'cep' => 'required',
+            'dataNasc' => 'required'
+        ];
+    }
 }

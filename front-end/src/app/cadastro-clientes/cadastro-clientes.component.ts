@@ -15,6 +15,7 @@ export class CadastroClientesComponent implements OnInit {
   }
 
   cadastrarCliente(form: NgForm){
+    console.log(form.value);
     return this.apiService.apiPost('criar-cliente', form.value);
   }
 
