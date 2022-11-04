@@ -18,7 +18,9 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        $produtos = DB::table('produtos')->get();
+        $produtos = DB::table('produtos')
+        ->orderBy('nome', 'asc')
+        ->get();
 
         return response()->json($produtos, 200);
     }
@@ -41,7 +43,13 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate($this->produto->rules());
+        $request->validate(
+            $this->produto->rules(),
+            [
+                'nome.required'             => 'Por favor, insira o nome do produto!',
+                'valorUnitario.required'    => 'Por favor, insira um valor para o produto!'
+            ]
+        );
 
         $produto = $this->produto->create([
             'nome'          => $request->nome,

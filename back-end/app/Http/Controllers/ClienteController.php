@@ -18,7 +18,9 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = DB::table('clientes')->get();
+        $clientes = DB::table('clientes')
+        ->orderBy('nome', 'asc')
+        ->get();
 
         return response()->json($clientes, 200);
     }
@@ -31,7 +33,20 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate($this->cliente->rules());
+        $request->validate(
+            $this->cliente->rules(),
+            [
+                'nome.required'         => 'Insira o nome do cliente', 
+                'cpf.required'          => 'Insira o CPF do cliente', 
+                'logradouro.required'   => 'Por favor, insira o logradouro (ex: rua, avenida)', 
+                'numero.required'       => 'Por favor, insira o número da residência do cliente', 
+                'bairro.required'       => 'Por favor, insira o bairro do cliente', 
+                'cidade.required'       => 'Insira a cidade do cliente',
+                'email.required'        => 'Insira o e-mail do cliente',
+                'cep.required'          => 'Insira o CEP do cliente',
+                'dataNasc.required'     => 'Insira a data de nascimento do cliente'
+            ]
+        );
 
         $cliente = $this->cliente->create([
             'nome'          => $request->nome,
@@ -45,7 +60,6 @@ class ClienteController extends Controller
             'cep'           => $request->cep,
             'dataNasc'      => $request->dataNasc,
         ]);
-        //dd($request->all());
         return response()->json(['success' => 'Cliente criado com sucesso!'], 200);
     }
 

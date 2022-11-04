@@ -25,6 +25,7 @@ export class ApiUrlService {
   handleSuccess(success: any){
     window.alert(success);
     this.errors = [];
+    (<HTMLFormElement>document.getElementById("form")).reset();
   }
 
   constructor(private http: HttpClient) { }
