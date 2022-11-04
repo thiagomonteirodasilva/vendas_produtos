@@ -41,6 +41,8 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate($this->produto->rules());
+
         $produto = $this->produto->create([
             'nome'          => $request->nome,
             'valorUnitario' => $request->valorUnitario

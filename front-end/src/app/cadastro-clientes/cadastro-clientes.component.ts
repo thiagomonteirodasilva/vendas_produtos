@@ -9,13 +9,14 @@ import { NgForm } from '@angular/forms';
 })
 export class CadastroClientesComponent implements OnInit {
 
-  constructor(private apiService: ApiUrlService) { }
+  clienteErrors = [];
+
+  constructor(public apiService: ApiUrlService) { }
 
   ngOnInit(): void {
   }
 
   cadastrarCliente(form: NgForm){
-    console.log(form.value);
     return this.apiService.apiPost('criar-cliente', form.value);
   }
 

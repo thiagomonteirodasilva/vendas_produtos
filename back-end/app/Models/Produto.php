@@ -13,4 +13,11 @@ class Produto extends Model
         'nome', 
         'valorUnitario'
     ];
+
+    public function rules(){
+        return [
+            'nome'          => 'required',
+            'valorUnitario' => 'required'
+        ];
+    }
 }

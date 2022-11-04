@@ -1,1 +1,25 @@
-<p>cadastro-produtos works!</p>
+<h2>Cadastro de Produto</h2>
+<form (ngSubmit)="cadastrarProduto(formId)" #formId="ngForm"  method="post">
+    <div class="mb-3">
+        <label for="nomeProduto" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nomeProduto" placeholder="Insira o nome do produto"
+        ngModel name="nome" required>
+    </div>
+    <div class="mb-3">
+        <label for="cpfCliente" class="form-label">Valor Unitário</label>
+        <input type="text" class="form-control" id="valorUnitario" 
+        maxlength="14" placeholder="Insira o valor" name="valorUnitario" ngModel required>
+    </div>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>
+<div *ngIf="apiService.errors != ''" class="alert alert-danger mt-4" role="alert">
+    <h5>Preencha o(s) seguinte(s) campo(s)</h5>
+    <div *ngFor="let e of apiService.errors">
+        <div *ngFor="let error of e.nome">
+            <p>{{error}}</p>
+        </div>
+        <div *ngFor="let error of e.valorUnitario">
+            <p>{{error}}</p>
+        </div>
+    </div>
+</div>

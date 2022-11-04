@@ -68,3 +68,35 @@
     </div>
     <button type="submit" class="btn btn-primary">Cadastrar</button>
 </form>
+<div *ngIf="apiService.errors != ''" class="alert alert-danger mt-4" role="alert">
+    <h5>Preencha o(s) seguinte(s) campo(s)</h5>
+    <div *ngFor="let e of apiService.errors">
+        <div *ngFor="let error of e.bairro">
+            <p>{{error}}</p>
+        </div>
+        <div *ngFor="let error of e.cep">
+            <p>{{error}}</p>
+        </div>
+        <div *ngFor="let error of e.cidade">
+            <p>{{error}}</p>
+        </div>
+        <div *ngFor="let error of e.cpf">
+            <p>{{error}}</p>
+        </div>
+        <div *ngFor="let error of e.dataNasc">
+            <p>{{error}}</p>
+        </div>
+        <div *ngFor="let error of e.email">
+            <p>{{error}}</p>
+        </div>
+        <div *ngFor="let error of e.logradouro">
+            <p>{{error}}</p>
+        </div>
+        <div *ngFor="let error of e.nome">
+            <p>{{error}}</p>
+        </div>
+        <div *ngFor="let error of e.numero">
+            <p>{{error}}</p>
+        </div>
+    </div>
+</div>

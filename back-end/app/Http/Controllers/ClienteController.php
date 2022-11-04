@@ -39,13 +39,13 @@ class ClienteController extends Controller
             'logradouro'    => $request->logradouro,
             'numero'        => $request->numero,
             'bairro'        => $request->bairro,
-            'complemento'   => $request->complemento,
+            'complemento'   => $request->complemento ?? '',
             'cidade'        => $request->cidade,
             'email'         => $request->email,
             'cep'           => $request->cep,
             'dataNasc'      => $request->dataNasc,
         ]);
-        dd($request->all());
+        //dd($request->all());
         return response()->json(['success' => 'Cliente criado com sucesso!'], 200);
     }
 

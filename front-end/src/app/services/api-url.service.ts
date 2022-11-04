@@ -10,10 +10,21 @@ export class ApiUrlService {
   apiURL = 'http://127.0.0.1:8000/api/';
   headers = new HttpHeaders({'Content-Type': 'application/json'});
   handleUpdateResponse: any;
+  //errors: { [key: string]: any[] } = {};
+  errors: any = [];
 
   handleError(error: any): Promise<any> {
-    window.alert('Ocorreu um erro: ' + error.message);
+    console.error('Ocorreu um erro: ' + error.message);
+    if(error.status === 422){//Unprocessable content (erro de validação)
+      this.errors = [];
+      this.errors.push(error.error.errors);
+    }
     return Promise.reject(error.message || error);
+  }
+
+  handleSuccess(success: any){
+    window.alert(success);
+    this.errors = [];
   }
 
   constructor(private http: HttpClient) { }
@@ -23,7 +34,7 @@ export class ApiUrlService {
       tap(data => console.log(data)),
       catchError(error => this.handleError(error))
     ).subscribe(
-      data => window.alert(data.success)
+      data => this.handleSuccess(data.success)
     )
   }
 }
