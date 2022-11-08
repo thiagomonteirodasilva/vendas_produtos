@@ -9,7 +9,7 @@
     <label for="produtosSelect" class="form-label">Produto(s)</label>
     <select *ngIf="produtos != ''" class="form-select mb-3" aria-label="Selecione o(s) produto(s)" multiple name="produtosId" id="produtosSelect" ngModel>
       <option *ngFor="let produto of produtos" value="{{produto.id}}">
-        {{produto.nome}}
+        {{produto.nome}} - R$ {{produto.valorUnitario.toFixed(2)}}
       </option>
     </select>
     <button type="submit" class="btn btn-primary">Cadastrar</button>
