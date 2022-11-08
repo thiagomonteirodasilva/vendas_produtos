@@ -1,1 +1,16 @@
-<p>cadastro-pedido works!</p>
+<h2 class="my-4">Cadastro de Cliente</h2>
+<form (ngSubmit)="cadastrarPedido(formId)" #formId="ngForm"  method="post">
+    <label for="clienteSelect" class="form-label">Cliente</label>
+    <select *ngIf="clientes != ''" class="form-select mb-3" aria-label="Selecione o cliente" name="clienteId" id="clienteSelect" ngModel>
+      <option *ngFor="let cliente of clientes" value="{{cliente.id}}">
+        {{cliente.nome}}
+      </option>
+    </select>
+    <label for="produtosSelect" class="form-label">Produto(s)</label>
+    <select *ngIf="produtos != ''" class="form-select mb-3" aria-label="Selecione o(s) produto(s)" multiple name="produtosId" id="produtosSelect" ngModel>
+      <option *ngFor="let produto of produtos" value="{{produto.id}}">
+        {{produto.nome}}
+      </option>
+    </select>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>

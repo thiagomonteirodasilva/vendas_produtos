@@ -32,10 +32,15 @@ export class ApiUrlService {
 
   apiPost(route: string, object: JSON) {
     return this.http.post(this.apiURL + route, JSON.stringify(object), {headers: this.headers}).pipe(
-      tap(data => console.log(data)),
       catchError(error => this.handleError(error))
     ).subscribe(
       data => this.handleSuccess(data.success)
+    )
+  }
+
+  apiGet(route: string){
+    return this.http.get(this.apiURL + route, {responseType: "json"}).pipe(
+      catchError(error => this.handleError(error))
     )
   }
 }
