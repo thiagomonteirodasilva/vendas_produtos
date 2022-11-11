@@ -10,10 +10,7 @@ import { MenuInicialComponent } from './menu-inicial/menu-inicial.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import localePt from '@angular/common/locales/pt';
-import {registerLocaleData} from '@angular/common';
-
-registerLocaleData(localePt, 'pt');
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -27,18 +24,10 @@ registerLocaleData(localePt, 'pt');
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
-  providers: [
-    {
-      provide: LOCALE_ID,
-      useValue: 'pt'
-    },
-    {
-      provide:  DEFAULT_CURRENCY_CODE,
-      useValue: 'BRL'
-    },
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

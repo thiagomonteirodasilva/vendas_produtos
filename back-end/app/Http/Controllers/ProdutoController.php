@@ -18,9 +18,16 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        $produtos = DB::table('produtos')
+        /*$produtos = DB::table('produtos')
         ->orderBy('nome', 'asc')
-        ->get();
+        ->get();*/
+        $produtos = Produto::query()
+            ->select([
+                'produtos.*',
+                DB::raw("CONCAT(produtos.nome, ' - R$ ', FORMAT(produtos.valorUnitario, '2', 'pt_BR')) as nome"),
+            ])
+            ->orderBy('nome', 'asc')
+            ->get();
 
         return response()->json($produtos, 200);
     }
