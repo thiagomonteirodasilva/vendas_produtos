@@ -23,14 +23,6 @@ export class CadastroPedidoComponent implements OnInit {
     this.listarProdutos();
   }
 
-  public onMouseDown(event: MouseEvent) {
-    event.preventDefault();
-    if(event.target != undefined){
-      (event.target as HTMLOptionElement)!.selected = !(event.target as HTMLOptionElement)?.selected;
-      console.log((event.target as HTMLOptionElement)!.selected)
-    }
-  }
-
   listarClientes(){
     return this.apiService.apiGet('listar-clientes').subscribe(data => {
       this.clientes = data;
@@ -54,8 +46,9 @@ export class CadastroPedidoComponent implements OnInit {
   }
 
   somarValores(valor: any){
-    this.valorTotal += valor;
-    console.log(this.valorTotal);
+    console.log(valor)
+    // this.valorTotal += valor;
+    // console.log(this.valorTotal);
   }
 
   cadastrarPedido(form: NgForm){
