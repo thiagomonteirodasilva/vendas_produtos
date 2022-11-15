@@ -14,7 +14,8 @@ export class CadastroPedidoComponent implements OnInit {
   clientes: any = [];
   produtos: any = [];
   dropdownSettings: IDropdownSettings;
-  valorTotal: number;
+  valorTotal = 0;
+  valorEmTela: string = '';
 
   constructor(public apiService: ApiUrlService) { }
 
@@ -46,9 +47,25 @@ export class CadastroPedidoComponent implements OnInit {
   }
 
   somarValores(valor: any){
-    console.log(valor)
-    // this.valorTotal += valor;
-    // console.log(this.valorTotal);
+    let valorSelecionado = valor['nome'].split(' ');
+    valorSelecionado = valorSelecionado[valorSelecionado.length - 1].replace(',', '.')
+    
+    let valorUnitario = parseFloat(valorSelecionado);
+    this.valorTotal += valorUnitario;
+    this.valorEmTela = this.valorTotal.toFixed(2);
+    this.valorEmTela = this.valorEmTela.replace('.', ',');
+    console.log(this.valorEmTela);
+  }
+
+  subtrairValores(valor: any){
+    let valorDesmarcado = valor['nome'].split(' ');
+    valorDesmarcado = valorDesmarcado[valorDesmarcado.length - 1].replace(',', '.')
+    
+    let valorUnitario = parseFloat(valorDesmarcado);
+    this.valorTotal -= valorUnitario;
+    this.valorEmTela = this.valorTotal.toFixed(2);
+    this.valorEmTela = this.valorEmTela.replace('.', ',');
+    console.log(this.valorEmTela);
   }
 
   cadastrarPedido(form: NgForm){

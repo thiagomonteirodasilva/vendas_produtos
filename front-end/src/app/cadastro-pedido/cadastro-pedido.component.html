@@ -13,8 +13,14 @@
       [data]="produtos"
       name="produtosId"
       (onSelect)="somarValores($event)"
+      (onDeSelect)="subtrairValores($event)"
       ngModel
     >
-</ng-multiselect-dropdown>
+    </ng-multiselect-dropdown>
+    
+    <input type="hidden" value="{{valorTotal}}" name="totalVenda">
+    <div class="alert alert-success mt-2" role="alert">
+      Valor total: <span class="fw-bold">R$ {{valorEmTela != '' ? valorEmTela : '0,00'}}</span>
+    </div>
     <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
 </form>
