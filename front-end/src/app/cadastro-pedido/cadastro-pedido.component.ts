@@ -13,7 +13,7 @@ export class CadastroPedidoComponent implements OnInit {
 
   clientes: any = [];
   produtos: any = [];
-  dropdownSettings: IDropdownSettings;;
+  dropdownSettings: IDropdownSettings;
   valorTotal: number;
 
   constructor(public apiService: ApiUrlService) { }
