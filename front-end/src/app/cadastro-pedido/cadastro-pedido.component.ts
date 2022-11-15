@@ -13,7 +13,11 @@ export class CadastroPedidoComponent implements OnInit {
 
   clientes: any = [];
   produtos: any = [];
+  arrProdutosId: any = [];
+
   dropdownSettings: IDropdownSettings;
+  
+  produtosIdEmString: string = '';
   valorTotal = 0;
   valorEmTela: string = '';
 
@@ -41,8 +45,10 @@ export class CadastroPedidoComponent implements OnInit {
       textField: 'nome',
       selectAllText: 'Selecionar tudo',
       unSelectAllText: 'Remover toda a seleção',
+      searchPlaceholderText: 'Digite algo',
       itemsShowLimit: 3,
-      allowSearchFilter: true
+      allowSearchFilter: true,
+      enableCheckAll: false
     };
   }
 
@@ -54,7 +60,8 @@ export class CadastroPedidoComponent implements OnInit {
     this.valorTotal += valorUnitario;
     this.valorEmTela = this.valorTotal.toFixed(2);
     this.valorEmTela = this.valorEmTela.replace('.', ',');
-    console.log(this.valorEmTela);
+
+    this.adicionandoProdutoId(valor['id'])
   }
 
   subtrairValores(valor: any){
@@ -65,7 +72,21 @@ export class CadastroPedidoComponent implements OnInit {
     this.valorTotal -= valorUnitario;
     this.valorEmTela = this.valorTotal.toFixed(2);
     this.valorEmTela = this.valorEmTela.replace('.', ',');
-    console.log(this.valorEmTela);
+
+    this.removendoProdutoId(valor['id']);
+  }
+
+  adicionandoProdutoId(produtoId: number){
+    this.arrProdutosId.push(produtoId);
+    this.produtosIdEmString = this.arrProdutosId.toString();
+  }
+
+  removendoProdutoId(produtoId: number){
+    const index = this.arrProdutosId.indexOf(produtoId);
+    if(index > -1){
+      this.arrProdutosId.splice(index, 1)
+      this.produtosIdEmString = this.arrProdutosId.toString();
+    }
   }
 
   cadastrarPedido(form: NgForm){
