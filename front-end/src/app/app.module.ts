@@ -1,4 +1,4 @@
-import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,11 +11,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-
-import localePt from '@angular/common/locales/pt';
-import {registerLocaleData} from '@angular/common';
-
-registerLocaleData(localePt, 'pt');
 
 @NgModule({
   declarations: [
@@ -32,16 +27,7 @@ registerLocaleData(localePt, 'pt');
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
-  providers: [
-    {
-      provide: LOCALE_ID,
-      useValue: 'pt'
-    },
-    {
-      provide:  DEFAULT_CURRENCY_CODE,
-      useValue: 'BRL'
-    },
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

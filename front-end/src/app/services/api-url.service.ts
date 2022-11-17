@@ -10,7 +10,6 @@ export class ApiUrlService {
   apiURL = 'http://127.0.0.1:8000/api/';
   headers = new HttpHeaders({'Content-Type': 'application/json'});
   handleUpdateResponse: any;
-  //errors: { [key: string]: any[] } = {};
   errors: any = [];
 
   handleError(error: any): Promise<any> {
