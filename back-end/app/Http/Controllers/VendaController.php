@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Venda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class VendaController extends Controller
 {
@@ -39,13 +40,23 @@ class VendaController extends Controller
      */
     public function store(Request $request)
     {
+        $dataHora = Carbon::now();
+
+        $request->validate(
+            $this->venda->rules(),
+            [
+                'clienteId.required'  => 'Por favor, selecione um cliente!',
+                'produtosId.required' => 'É necessário selecionar pelo menos um produto!'
+            ]
+        );
+
         $venda = $this->venda->create([
-            'dataVenda'     => $request->dataVenda,
+            'dataVenda'     => $dataHora->toDateTimeString(),
             'clienteId'     => $request->clienteId,
             'totalVenda'    => $request->totalVenda,
             'produtosId'    => $request->produtosId
         ]);
-
+        
         return response()->json(['success' => 'Pedido de venda feito com sucesso!'], 200);
     }
 

@@ -17,9 +17,13 @@ export class CadastroPedidoComponent implements OnInit {
 
   dropdownSettings: IDropdownSettings;
   
-  produtosIdEmString: string = '';
+  
   valorTotal = 0;
   valorEmTela: string = '';
+
+  //ngModel
+  totalVenda = 0;
+  produtosId: string = '';
 
   constructor(public apiService: ApiUrlService) { }
 
@@ -78,18 +82,18 @@ export class CadastroPedidoComponent implements OnInit {
 
   adicionandoProdutoId(produtoId: number){
     this.arrProdutosId.push(produtoId);
-    this.produtosIdEmString = this.arrProdutosId.toString();
+    this.produtosId = this.arrProdutosId.toString();
   }
 
   removendoProdutoId(produtoId: number){
     const index = this.arrProdutosId.indexOf(produtoId);
     if(index > -1){
       this.arrProdutosId.splice(index, 1)
-      this.produtosIdEmString = this.arrProdutosId.toString();
+      this.produtosId = this.arrProdutosId.toString();
     }
   }
 
   cadastrarPedido(form: NgForm){
-    
+    this.apiService.apiPost('criar-pedido-venda', form.value)
   }
 }

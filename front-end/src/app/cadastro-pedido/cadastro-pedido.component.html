@@ -6,23 +6,33 @@
         {{cliente.nome}}
       </option>
     </select>
+
+    <input type="hidden" [(ngModel)]="valorTotal" name="totalVenda">
+    <input type="hidden" [(ngModel)]="produtosId" name="produtosId">
     
     <ng-multiselect-dropdown
       [placeholder]="'Selecione o(s) produto(s)'"
       [settings]="dropdownSettings"
       [data]="produtos"
-      name="produtosId"
+      name="produtosIdSelect"
       (onSelect)="somarValores($event)"
       (onDeSelect)="subtrairValores($event)"
       ngModel
     >
     </ng-multiselect-dropdown>
-    
-    <input type="hidden" value="{{valorTotal}}" name="totalVenda">
-    <input type="hidden" value="{{produtosIdEmString}}" name="produtosId">
-
     <div class="alert alert-success mt-2" role="alert">
       Valor total: <span class="fw-bold">R$ {{valorEmTela != '' ? valorEmTela : '0,00'}}</span>
     </div>
     <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
 </form>
+<div *ngIf="apiService.errors != ''" class="alert alert-danger mt-4" role="alert">
+  <h5>Preencha o(s) seguinte(s) campo(s)</h5>
+  <div *ngFor="let e of apiService.errors">
+      <div *ngFor="let error of e.clienteId">
+          <p>{{error}}</p>
+      </div>
+      <div *ngFor="let error of e.produtosId">
+          <p>{{error}}</p>
+      </div>
+  </div>
+</div>

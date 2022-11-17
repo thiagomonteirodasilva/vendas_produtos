@@ -15,4 +15,11 @@ class Venda extends Model
         'totalVenda',
         'produtosId'
     ];
+
+    public function rules(){
+        return [
+            'clienteId'  => 'required',
+            'produtosId' => 'required'
+        ];
+    }
 }
