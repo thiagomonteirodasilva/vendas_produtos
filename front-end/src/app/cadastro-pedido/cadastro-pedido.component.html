@@ -21,7 +21,7 @@
     >
     </ng-multiselect-dropdown>
     <div class="alert alert-success mt-2" role="alert">
-      Valor total: <span class="fw-bold">R$ {{valorEmTela != '' ? valorEmTela : '0,00'}}</span>
+      Valor total: <span class="fw-bold">{{valorEmTela | currency:'BRL'}}</span>
     </div>
     <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
 </form>

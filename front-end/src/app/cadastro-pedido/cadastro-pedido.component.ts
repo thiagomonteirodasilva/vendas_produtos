@@ -63,7 +63,6 @@ export class CadastroPedidoComponent implements OnInit {
     let valorUnitario = parseFloat(valorSelecionado);
     this.valorTotal += valorUnitario;
     this.valorEmTela = this.valorTotal.toFixed(2);
-    this.valorEmTela = this.valorEmTela.replace('.', ',');
 
     this.adicionandoProdutoId(valor['id'])
   }
@@ -75,7 +74,6 @@ export class CadastroPedidoComponent implements OnInit {
     let valorUnitario = parseFloat(valorDesmarcado);
     this.valorTotal -= valorUnitario;
     this.valorEmTela = this.valorTotal.toFixed(2);
-    this.valorEmTela = this.valorEmTela.replace('.', ',');
 
     this.removendoProdutoId(valor['id']);
   }
