@@ -18,9 +18,6 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        /*$produtos = DB::table('produtos')
-        ->orderBy('nome', 'asc')
-        ->get();*/
         $produtos = Produto::query()
             ->select([
                 'produtos.*',
@@ -62,7 +59,7 @@ class ProdutoController extends Controller
             'nome'          => $request->nome,
             'valorUnitario' => $request->valorUnitario
         ]);
-
+        
         return response()->json(['success' => 'Produto criado com sucesso!'], 200);
     }
 

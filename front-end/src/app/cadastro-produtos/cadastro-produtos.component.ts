@@ -15,6 +15,7 @@ export class CadastroProdutosComponent implements OnInit {
   }
 
   cadastrarProduto(form: NgForm){
+    console.log(form.value)
     return this.apiService.apiPost('criar-produto', form.value);
   }
 

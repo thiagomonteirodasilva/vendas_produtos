@@ -10,8 +10,8 @@ class Produto extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nome' => 'string', 
-        'valorUnitario' => 'float'
+        'nome',
+        'valorUnitario'
     ];
 
     public function rules(){
